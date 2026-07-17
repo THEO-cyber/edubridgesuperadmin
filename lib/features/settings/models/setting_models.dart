@@ -29,9 +29,9 @@ class SystemSetting {
 
 const kRecommendedSettings = [
   ('platform.name', 'EduBridge', 'Platform display name'),
-  ('platform.currency', 'USD', 'Default currency'),
+  ('platform.currency', 'XAF', 'Default currency'),
   ('platform.instructor_revenue_share', '0.70', 'Revenue share for instructors (0–1)'),
-  ('platform.max_course_price', '999', 'Maximum allowed course price in USD'),
+  ('platform.max_course_price', '500000', 'Maximum allowed course price in XAF'),
   ('platform.maintenance_mode', 'false', 'Set to true during deployments'),
   ('platform.free_enrollment_enabled', 'true', 'Allow free courses'),
   ('platform.review_period_days', '30', 'Days students can review after enrollment'),
