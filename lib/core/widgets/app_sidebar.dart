@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_colors.dart';
+import 'edubridge_logo.dart';
 
 class _NavItem {
   const _NavItem({
@@ -158,31 +159,14 @@ class _SidebarHeader extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 20, 16, 12),
       child: Row(
         children: [
-          Container(
-            width: 34,
-            height: 34,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [AppColors.primary, AppColors.primaryDark],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(9),
-            ),
-            child: const Icon(Icons.hub_rounded, color: Colors.white, size: 18),
-          ),
+          const EduBridgeMark(size: 34),
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'EduBridge',
-                style: TextStyle(
-                  color: AppColors.textPrimary,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 15,
-                  letterSpacing: -0.2,
-                ),
+              const EduBridgeWordmark(
+                fontSize: 16,
+                baseColor: AppColors.textPrimary,
               ),
               Text(
                 isSuperAdmin ? 'Super Admin' : 'Admin',

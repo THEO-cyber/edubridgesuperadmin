@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/providers/auth_provider.dart';
 import '../../features/dashboard/providers/dashboard_provider.dart';
 import '../theme/app_colors.dart';
+import 'edubridge_logo.dart';
 import 'app_sidebar.dart';
 
 class AppShell extends ConsumerWidget {
@@ -103,13 +104,10 @@ class _TopBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         children: [
-          const Icon(Icons.hub_rounded, size: 14, color: AppColors.textMuted),
+          const EduBridgeMark(size: 16),
+          const SizedBox(width: 7),
+          const EduBridgeWordmark(fontSize: 12, baseColor: AppColors.textMuted),
           const SizedBox(width: 6),
-          const Text(
-            'EduBridge',
-            style: TextStyle(color: AppColors.textMuted, fontSize: 12),
-          ),
-          const SizedBox(width: 4),
           const Icon(Icons.chevron_right_rounded,
               size: 14, color: AppColors.textMuted),
           const SizedBox(width: 4),
