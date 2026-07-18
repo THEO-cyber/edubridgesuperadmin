@@ -12,18 +12,28 @@ class InstructorApplication {
   });
 
   factory InstructorApplication.fromJson(Map<String, dynamic> json) {
-    final user = json['user'] as Map<String, dynamic>? ?? {};
+    // Public (pre-account) applications have no linked user until approval — fall
+    // back to the applicant details captured on the application itself.
+    final user = json['user'] as Map<String, dynamic>?;
+    final firstName = (user?['firstName'] ?? json['firstName'] ?? '').toString();
+    final lastName = (user?['lastName'] ?? json['lastName'] ?? '').toString();
+    final email = (user?['email'] ?? json['email'] ?? '').toString();
+
+    final subjects = json['subjectExpertise'];
+    final expertise = subjects is List
+        ? subjects.join(', ')
+        : (json['expertise'] ?? subjects ?? '').toString();
+
     return InstructorApplication(
       id: json['id']?.toString() ?? '',
       status: json['status']?.toString() ?? 'pending',
       motivation: json['motivation']?.toString() ?? '',
-      expertise: json['expertise']?.toString() ?? '',
+      expertise: expertise,
       createdAt: json['createdAt'] != null
           ? DateTime.tryParse(json['createdAt'].toString()) ?? DateTime.now()
           : DateTime.now(),
-      userName:
-          '${user['firstName'] ?? ''} ${user['lastName'] ?? ''}'.trim(),
-      userEmail: user['email']?.toString() ?? '',
+      userName: '$firstName $lastName'.trim(),
+      userEmail: email,
       rejectionReason: json['rejectionReason']?.toString(),
       reviewedAt: json['reviewedAt'] != null
           ? DateTime.tryParse(json['reviewedAt'].toString())
