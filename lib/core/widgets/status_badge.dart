@@ -58,13 +58,20 @@ class StatusBadge extends StatelessWidget {
             decoration: BoxDecoration(color: fg, shape: BoxShape.circle),
           ),
           const SizedBox(width: 5),
-          Text(
-            label,
-            style: TextStyle(
-              color: fg,
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.2,
+          // Flexible so the badge shrinks (and ellipsises) instead of
+          // overflowing when placed in a narrow/Expanded table cell.
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              softWrap: false,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: fg,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 0.2,
+              ),
             ),
           ),
         ],
