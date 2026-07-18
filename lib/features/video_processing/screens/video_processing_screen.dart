@@ -1,3 +1,4 @@
+import '../../../core/network/api_error.dart';
 import 'package:dio/dio.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -140,7 +141,7 @@ class _PendingTab extends ConsumerWidget {
     return videosAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, _) => ErrorState(
-        message: e.toString(),
+        message: apiErrorMessage(e),
         onRetry: () => ref.invalidate(pendingVideosProvider),
       ),
       data: (videos) {
@@ -749,7 +750,7 @@ class _StatsTab extends ConsumerWidget {
             },
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (e, _) => ErrorState(
-              message: e.toString(),
+              message: apiErrorMessage(e),
               onRetry: () => ref.invalidate(videoJobsProvider),
             ),
           ),

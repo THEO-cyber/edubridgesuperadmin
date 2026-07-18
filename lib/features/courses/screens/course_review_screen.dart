@@ -904,7 +904,6 @@ class _VideoPlayerDialogState extends State<_VideoPlayerDialog> {
     _player = Player();
     _controller = VideoController(_player);
     _player.stream.error.listen((err) {
-      debugPrint('>>> VideoPlayer mpv error: $err');
       final msg = err.contains('Failed to open')
           ? 'Video file not found in storage.\nThe file may not have been fully processed yet.'
           : err;
@@ -920,7 +919,6 @@ class _VideoPlayerDialogState extends State<_VideoPlayerDialog> {
       final apiUrl = isReady
           ? '${ApiEndpoints.baseUrl}${ApiEndpoints.videoStreamUrl(widget.videoId)}'
           : '${ApiEndpoints.baseUrl}${ApiEndpoints.videoPreviewUrl(widget.videoId)}';
-      debugPrint('>>> VideoPlayer fetching signed url ($isReady ? stream : admin-preview): $apiUrl');
 
       final resp = await dio.get<dynamic>(
         apiUrl,
@@ -931,7 +929,6 @@ class _VideoPlayerDialogState extends State<_VideoPlayerDialog> {
       );
 
       final data = resp.data;
-      debugPrint('>>> VideoPlayer signed-url status=${resp.statusCode} data=$data');
 
       if (resp.statusCode != 200 && resp.statusCode != 201) {
         final msg = (data is Map ? data['message']?.toString() : null)
@@ -946,11 +943,9 @@ class _VideoPlayerDialogState extends State<_VideoPlayerDialog> {
         return;
       }
 
-      debugPrint('>>> VideoPlayer playing: $streamUrl');
       await _player.open(Media(streamUrl));
       if (mounted) setState(() => _loading = false);
     } catch (e) {
-      debugPrint('>>> VideoPlayer fetch error: $e');
       if (mounted) setState(() { _loading = false; _error = e.toString(); });
     }
   }

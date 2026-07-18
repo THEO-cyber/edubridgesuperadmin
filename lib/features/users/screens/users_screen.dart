@@ -1,3 +1,4 @@
+import '../../../core/network/api_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
@@ -146,7 +147,7 @@ class _UsersScreenState extends ConsumerState<UsersScreen> {
                 },
                 loading: () => const Center(child: CircularProgressIndicator()),
                 error: (e, _) => ErrorState(
-                  message: e.toString(),
+                  message: apiErrorMessage(e),
                   onRetry: () => ref.invalidate(usersProvider),
                 ),
               ),
@@ -605,7 +606,7 @@ class _CreateUserDialogState extends ConsumerState<_CreateUserDialog> {
       setState(() => _loading = false);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed: ${e.toString()}')),
+          SnackBar(content: Text(apiErrorMessage(e))),
         );
       }
     }

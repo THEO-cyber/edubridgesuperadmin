@@ -1,3 +1,4 @@
+import '../../../core/network/api_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
@@ -65,7 +66,7 @@ class ApplicationsScreen extends ConsumerWidget {
               loading: () =>
                   const Center(child: CircularProgressIndicator()),
               error: (e, _) => ErrorState(
-                message: e.toString(),
+                message: apiErrorMessage(e),
                 onRetry: () => ref.invalidate(applicationsProvider),
               ),
             ),

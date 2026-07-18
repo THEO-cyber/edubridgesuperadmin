@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/api_endpoints.dart';
 import '../../../core/network/api_client.dart';
@@ -31,7 +30,6 @@ class CoursesRepository {
 
   Future<CourseReviewDetail> getCourseReview(String id) async {
     final path = ApiEndpoints.courseReview(id);
-    debugPrint('>>> getCourseReview id="$id" path="$path"');
     final res = await _client.get(path);
     return CourseReviewDetail.fromJson(res.data as Map<String, dynamic>);
   }
