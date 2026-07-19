@@ -49,6 +49,11 @@ abstract final class ApiEndpoints {
   static const String applicationStats = '/applications/instructor/stats';
   static String reviewApplication(String id) => '/applications/instructor/$id/review';
 
+  // Support inbox
+  static const String supportConversations = '/chat/admin/support';
+  static String supportMessages(String roomId) => '/chat/admin/support/$roomId/messages';
+  static String supportReply(String roomId) => '/chat/admin/support/$roomId/reply';
+
   // Reports
   static const String reports = '/reports';
   static const String reportStats = '/reports/stats';

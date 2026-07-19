@@ -78,6 +78,11 @@ class AppSidebar extends StatelessWidget {
             badge: pendingApplications > 0 ? pendingApplications : null,
           ),
           const _NavItem(
+            icon: Icons.support_agent_rounded,
+            label: 'Support',
+            route: '/support',
+          ),
+          const _NavItem(
             icon: Icons.notifications_rounded,
             label: 'Notifications',
             route: '/notifications',

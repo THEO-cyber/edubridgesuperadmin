@@ -12,6 +12,7 @@ import '../../features/dashboard/screens/dashboard_screen.dart';
 import '../../features/payouts/screens/payouts_screen.dart';
 import '../../features/reports/screens/reports_screen.dart';
 import '../../features/settings/screens/settings_screen.dart';
+import '../../features/support/screens/support_screen.dart';
 import '../../features/users/screens/users_screen.dart';
 import '../../features/notifications/screens/notifications_screen.dart';
 import '../../features/video_processing/screens/video_processing_screen.dart';
@@ -64,6 +65,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/applications',
             builder: (_, __) => const ApplicationsScreen(),
+          ),
+          GoRoute(
+            path: '/support',
+            builder: (_, __) => const SupportScreen(),
           ),
           GoRoute(
             path: '/reports',
